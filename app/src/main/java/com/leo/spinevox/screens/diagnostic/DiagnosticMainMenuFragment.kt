@@ -2,6 +2,7 @@ package com.leo.spinevox.screens.diagnostic
 
 import android.content.Intent
 import android.view.View
+import androidx.navigation.fragment.findNavController
 import com.leo.spinevox.R
 import com.leo.spinevox.databinding.LayoutDiagnosticMainMenuBinding
 import com.leo.spinevox.screens.base.LazyFragment
@@ -21,7 +22,7 @@ class DiagnosticMainMenuFragment : LazyFragment<LayoutDiagnosticMainMenuBinding>
         }
 
         binding.btnArchive.setOnClickListener {
-
+            findNavController().navigate(R.id.action_navigation_tab1_to_archiveFragment)
         }
     }
 
