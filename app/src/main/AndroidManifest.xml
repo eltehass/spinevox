@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.leo.spinevox">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/artboard_2"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/artboard_2"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".screens.diagnostic.WaitingDoctorResultsActivity"/>
+        <activity android:name=".screens.diagnostic.camera.CustomCameraUISecondActivity" />
+        <activity android:name=".screens.diagnostic.PhotoPreviewActivity" />
+        <activity android:name=".screens.diagnostic.camera.CustomCameraUIActivity" />
+        <activity android:name=".screens.HostContentActivity" />
+        <activity android:name=".screens.SetAgeActivity" />
+        <activity android:name=".SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".screens.login.HostLoginActivity" />
+    </application>
+
+</manifest>

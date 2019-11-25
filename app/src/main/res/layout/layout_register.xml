@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="6dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_red_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="41dp"
+            android:src="@drawable/artboard_14"
+            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="34dp"
+            android:text="Реєстрація"
+            android:textColor="@android:color/black"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toTopOf="@+id/et_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_name"
+            android:layout_width="296dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/shape_grey_borderless"
+            android:gravity="center"
+            android:hint="Ім’я"
+            android:inputType="numberDecimal"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/et_phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="296dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/shape_grey_borderless"
+            android:gravity="center"
+            android:hint="Номер телефону"
+            android:inputType="numberDecimal"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/et_password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="296dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/shape_grey_borderless"
+            android:gravity="center"
+            android:hint="Пароль"
+            android:inputType="textPassword"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toTopOf="@+id/ll_enter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btn_start"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Вже маєте акаунт? "
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tv_enter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Увійдіть"
+                android:textColor="#FD1414" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="296dp"
+            android:layout_height="40dp"
+            android:layout_marginBottom="47dp"
+            android:background="@drawable/shape_white_black_border"
+            android:text="Почати"
+            android:textAllCaps="false"
+            android:textColor="@drawable/selector_text_black_grey"
+            app:layout_constraintBottom_toTopOf="@+id/ll_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tv_terms_privacy_policy_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="By signing up, I accept the "
+                android:textColor="@android:color/black"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_terms_privacy_policy_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="TERMS "
+                android:textColor="#FD1414"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_terms_privacy_policy_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&amp; "
+                android:textColor="@android:color/black"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/tv_terms_privacy_policy_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="PRIVACY POLICY"
+                android:textColor="#FD1414"
+                android:textSize="10sp" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

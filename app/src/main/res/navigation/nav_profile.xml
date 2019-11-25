@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_profile"
+    app:startDestination="@id/diagnosticMainMenuFragment3">
+
+    <fragment
+        android:id="@+id/diagnosticMainMenuFragment3"
+        android:name="com.leo.spinevox.screens.diagnostic.DiagnosticMainMenuFragment"
+        android:label="DiagnosticMainMenuFragment" />
+</navigation>
