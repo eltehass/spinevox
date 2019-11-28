@@ -96,6 +96,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="center"
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_google" />
 
         </FrameLayout>
@@ -118,6 +119,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_gravity="center"
+                android:background="@android:color/transparent"
                 android:src="@drawable/ic_facebook" />
 
         </FrameLayout>
@@ -168,9 +170,7 @@
                 android:textColor="#FD1414"
                 android:textSize="10sp" />
 
-
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

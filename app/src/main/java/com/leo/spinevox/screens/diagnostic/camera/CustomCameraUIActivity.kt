@@ -3,18 +3,17 @@ package com.leo.spinevox.screens.diagnostic.camera
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.leo.spinevox.R
 import com.leo.spinevox.screens.diagnostic.PhotoPreviewActivity
+import com.leo.spinevox.screens.diagnostic.camera.core.Camera2
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_custom_camera_ui.*
-import com.leo.spinevox.screens.diagnostic.camera.core.Camera2
-import android.graphics.Bitmap
 import java.io.ByteArrayOutputStream
-
 
 class CustomCameraUIActivity : AppCompatActivity() {
 
@@ -28,10 +27,10 @@ class CustomCameraUIActivity : AppCompatActivity() {
         iv_close.setOnClickListener { onBackPressed() }
         camera2 = Camera2(this, camera_view)
         init()
+        initCamera2Api()
     }
 
     private fun init() {
-
         if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.CAMERA
@@ -46,9 +45,7 @@ class CustomCameraUIActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
                 requestPermissions(arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE), 3)
             else initCamera2Api()
-
         }
-
     }
 
     private fun initCamera2Api() {

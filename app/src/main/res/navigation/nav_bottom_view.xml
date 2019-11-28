@@ -8,24 +8,19 @@
         android:name="com.leo.spinevox.screens.diagnostic.DiagnosticMainMenuFragment"
         android:label="DiagnosticMainMenuFragment" >
         <action
-            android:id="@+id/action_navigation_tab1_to_navigation_tab2"
-            app:destination="@id/navigation_tab2" />
-        <action
             android:id="@+id/action_navigation_tab1_to_archiveFragment"
             app:destination="@id/archiveFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_tab2"
-        android:name="com.leo.spinevox.screens.diagnostic.DiagnosticMainMenuFragment"
-        android:label="DiagnosticMainMenuFragment" >
         <action
-            android:id="@+id/action_navigation_tab2_to_navigation_tab3"
-            app:destination="@id/navigation_tab3" />
+            android:id="@+id/action_navigation_tab1_to_navigation_tab2"
+            app:destination="@id/navigation_tab2"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -34,14 +29,13 @@
         android:label="DiagnosticMainMenuFragment" >
         <action
             android:id="@+id/action_navigation_tab3_to_navigation_tab4"
-            app:destination="@id/navigation_tab4" />
+            app:destination="@id/navigation_tab4"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
-
-    <fragment
-        android:id="@+id/navigation_tab4"
-        android:name="com.leo.spinevox.screens.diagnostic.DiagnosticMainMenuFragment"
-        android:label="DiagnosticMainMenuFragment" />
     <fragment
         android:id="@+id/archiveFragment"
         android:name="com.leo.spinevox.screens.diagnostic.archive.ArchiveFragment"
@@ -58,5 +52,43 @@
         android:id="@+id/archiveInfoFragment"
         android:name="com.leo.spinevox.screens.diagnostic.archive.ArchiveInfoFragment"
         android:label="ArchiveInfoFragment" />
+    <fragment android:id="@+id/navigation_tab2"
+              android:name="com.leo.spinevox.screens.bluetoothdevices.BluetoothPairingFragment"
+              android:label="BluetoothPairingFragment">
+        <action
+            android:id="@+id/action_navigation_tab2_to_navigation_tab3"
+            app:destination="@id/navigation_tab3"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_navigation_tab2_to_bluetoothDevicePreparingFragment"
+            app:destination="@id/bluetoothDevicePreparingFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/bluetoothDevicePreparingFragment"
+        android:name="com.leo.spinevox.screens.bluetoothdevices.BluetoothDevicePreparingFragment"
+        android:label="BluetoothDevicePreparingFragment" >
+        <action
+            android:id="@+id/action_bluetoothDevicePreparingFragment_to_bluetoothDeviceTrainingFragment"
+            app:destination="@id/bluetoothDeviceTrainingFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/bluetoothDeviceTrainingFragment"
+        android:name="com.leo.spinevox.screens.bluetoothdevices.BluetoothDeviceTrainingFragment"
+        android:label="BluetoothDeviceTrainingFragment" />
+    <fragment
+        android:id="@+id/navigation_tab4"
+        android:name="com.leo.spinevox.screens.profile.ProfileSettingsFragment"
+        android:label="ProfileSettingsFragment" />
 
 </navigation>
