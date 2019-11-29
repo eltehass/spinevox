@@ -30,6 +30,7 @@ class LoginOrRegisterFragment : LazyFragment<LayoutLoginOrRegisterBinding>() {
     private val GOOGLE_RC_SIGN_IN = 228
 
     private val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        .requestIdToken("808856282077-kb8jqpkf5nllutarcmqvq0gcl94hor26.apps.googleusercontent.com")
         .requestEmail()
         .build()
 
@@ -81,6 +82,7 @@ class LoginOrRegisterFragment : LazyFragment<LayoutLoginOrRegisterBinding>() {
 
     private fun handleGoogleAccount(account: GoogleSignInAccount) {
         Log.i("GoogleLogin", "Token: ${account.id}")
+        Log.i("GoogleLogin", "Token: ${account.idToken}")
         Log.i("GoogleLogin", "AuthCode: ${account.serverAuthCode}")
     }
 
