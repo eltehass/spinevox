@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.leo.spinevox.screens.diagnostic.camera.core.AutoFitTextureView
+    <com.spinevox.app.screens.diagnostic.camera.core.AutoFitTextureView
         android:id="@+id/camera_view"
         android:layout_width="0dp"
         android:layout_height="0dp"

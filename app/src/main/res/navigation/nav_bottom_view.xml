@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/navigation_tab1"
-        android:name="com.leo.spinevox.screens.diagnostic.DiagnosticMainMenuFragment"
+        android:name="com.spinevox.app.screens.diagnostic.DiagnosticMainMenuFragment"
         android:label="DiagnosticMainMenuFragment" >
         <action
             android:id="@+id/action_navigation_tab1_to_archiveFragment"
@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navigation_tab3"
-        android:name="com.leo.spinevox.screens.diagnostic.DiagnosticMainMenuFragment"
+        android:name="com.spinevox.app.screens.diagnostic.DiagnosticMainMenuFragment"
         android:label="DiagnosticMainMenuFragment" >
         <action
             android:id="@+id/action_navigation_tab3_to_navigation_tab4"
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/archiveFragment"
-        android:name="com.leo.spinevox.screens.diagnostic.archive.ArchiveFragment"
+        android:name="com.spinevox.app.screens.diagnostic.archive.ArchiveFragment"
         android:label="ArchiveFragment" >
         <action
             android:id="@+id/action_archiveFragment_to_archiveInfoFragment"
@@ -50,10 +50,10 @@
     </fragment>
     <fragment
         android:id="@+id/archiveInfoFragment"
-        android:name="com.leo.spinevox.screens.diagnostic.archive.ArchiveInfoFragment"
+        android:name="com.spinevox.app.screens.diagnostic.archive.ArchiveInfoFragment"
         android:label="ArchiveInfoFragment" />
     <fragment android:id="@+id/navigation_tab2"
-              android:name="com.leo.spinevox.screens.bluetoothdevices.BluetoothPairingFragment"
+              android:name="com.spinevox.app.screens.bluetoothdevices.BluetoothPairingFragment"
               android:label="BluetoothPairingFragment">
         <action
             android:id="@+id/action_navigation_tab2_to_navigation_tab3"
@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/bluetoothDevicePreparingFragment"
-        android:name="com.leo.spinevox.screens.bluetoothdevices.BluetoothDevicePreparingFragment"
+        android:name="com.spinevox.app.screens.bluetoothdevices.BluetoothDevicePreparingFragment"
         android:label="BluetoothDevicePreparingFragment" >
         <action
             android:id="@+id/action_bluetoothDevicePreparingFragment_to_bluetoothDeviceTrainingFragment"
@@ -84,11 +84,11 @@
     </fragment>
     <fragment
         android:id="@+id/bluetoothDeviceTrainingFragment"
-        android:name="com.leo.spinevox.screens.bluetoothdevices.BluetoothDeviceTrainingFragment"
+        android:name="com.spinevox.app.screens.bluetoothdevices.BluetoothDeviceTrainingFragment"
         android:label="BluetoothDeviceTrainingFragment" />
     <fragment
         android:id="@+id/navigation_tab4"
-        android:name="com.leo.spinevox.screens.profile.ProfileSettingsFragment"
+        android:name="com.spinevox.app.screens.profile.ProfileSettingsFragment"
         android:label="ProfileSettingsFragment" />
 
 </navigation>

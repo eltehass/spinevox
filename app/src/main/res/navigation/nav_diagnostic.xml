@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/diagnosticMainMenuFragment"
-        android:name="com.leo.spinevox.screens.diagnostic.DiagnosticMainMenuFragment"
+        android:name="com.spinevox.app.screens.diagnostic.DiagnosticMainMenuFragment"
         android:label="DiagnosticMainMenuFragment" />
 </navigation>

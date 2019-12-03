@@ -46,7 +46,7 @@
             android:background="@drawable/shape_grey_borderless"
             android:gravity="center"
             android:hint="Номер телефону"
-            android:inputType="numberDecimal"
+            android:inputType="phone"
             android:textAllCaps="false"
             app:layout_constraintBottom_toTopOf="@+id/et_password"
             app:layout_constraintEnd_toEndOf="parent"
