@@ -6,9 +6,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.spinevox.app.R
 import com.spinevox.app.databinding.LayoutArchiveBinding
+import com.spinevox.app.network.InspectionDataResponse
+import com.spinevox.app.network.SpineVoxService
 import com.spinevox.app.screens.base.LazyFragment
 import com.spinevox.app.screens.base.recycler.LazyAdapter
 import com.spinevox.app.screens.base.recycler.initWithLinLay
+import kotlinx.coroutines.launch
 
 class ArchiveFragment : LazyFragment<LayoutArchiveBinding>(), LazyAdapter.OnItemClickListener<ItemArchiveData> {
 
@@ -17,18 +20,31 @@ class ArchiveFragment : LazyFragment<LayoutArchiveBinding>(), LazyAdapter.OnItem
     override fun initController(view: View) {
         binding.ivClose.setOnClickListener { findNavController().popBackStack() }
 
-        binding.rvContent.initWithLinLay(LinearLayoutManager.VERTICAL, ArchiveAdapter(this), listOf(
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
-                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019")
-        ))
+        val listData = mutableListOf<InspectionDataResponse.InspectionDataItem>()
+
+        val token = sharedPreferences.getString("serverToken", "")
+        launch {
+            try {
+                val result = SpineVoxService.getService(context!!).getInspectionList("JWT $token").await()
+                listData.addAll(result.data)
+                binding.rvContent.initWithLinLay(LinearLayoutManager.VERTICAL, ArchiveAdapter(this@ArchiveFragment), listData.map { ItemArchiveData("Сколіометр + Штучній інтелект", it.created_at) })
+            } catch (e: Throwable) {
+                val a = 5
+            }
+        }
+
+//        binding.rvContent.initWithLinLay(LinearLayoutManager.VERTICAL, ArchiveAdapter(this), listOf(
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019"),
+//                ItemArchiveData("Сколіометр + Штучній інтелект", "20.09.2019")
+//        ))
     }
 
     override fun onLazyItemClick(data: ItemArchiveData) {

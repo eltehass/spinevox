@@ -25,8 +25,8 @@
 
     <fragment
         android:id="@+id/navigation_tab3"
-        android:name="com.spinevox.app.screens.diagnostic.DiagnosticMainMenuFragment"
-        android:label="DiagnosticMainMenuFragment" >
+        android:name="com.spinevox.app.screens.trainings.TrainingsMainFragment"
+        android:label="TrainingsMainFragment" >
         <action
             android:id="@+id/action_navigation_tab3_to_navigation_tab4"
             app:destination="@id/navigation_tab4"

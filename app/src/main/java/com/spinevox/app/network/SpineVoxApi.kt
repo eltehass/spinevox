@@ -59,6 +59,9 @@ interface SpineVoxApi {
                            @Field("skoliometry_lumbar") skoliometryLumbar: Int? = null,
                            @Field("skoliometry_chest") skoliometryChest: Int? = null) : Deferred<Any>
 
+    @GET("api/posedetect/inspection/")
+    fun getInspectionList(@Header("Authorization") authorization: String): Deferred<InspectionDataResponse>
+
     @POST("api/auth/me/email/confirm/")
     fun changeEmailConfirm(@Field("email") email: String, @Field("token") token: String): Deferred<DetailResponse>
 
@@ -114,3 +117,34 @@ data class ChangePhotoResponse(val data: DataClass, val detail: String) : Serial
     data class DataClass(val photo: String): Serializable
 }
 data class DetailResponse(val detail: String) : Serializable
+
+data class InspectionDataResponse(
+    val count: Int,
+    val next: String?,
+    val previous: String?,
+    val data: List<InspectionDataItem>,
+    val detail: String
+): Serializable {
+    data class InspectionDataItem(
+        val id: Int,
+        val inspection_type: String,
+        val back_image: String?,
+        val profile_image: String?,
+        val skoliometry_pelvis: Double?,
+        val skoliometry_lumbar: Double?,
+        val skoliometry_chest: Double?,
+        val height: Double?,
+        val diagnosis: Diagnosis?,
+        val status: String?,
+        val errors: List<String>,
+        val created_at: String
+    ): Serializable
+
+    data class Diagnosis(
+        val skoliometry: String?,
+        val twisted_pelvis: String?,
+        val back: String?,
+        val leg: String?,
+        val profile: String?
+    ): Serializable
+}
