@@ -3,19 +3,23 @@ package com.spinevox.app.screens.diagnostic
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.spinevox.app.R
 import com.spinevox.app.common.TwoBitmapHolders
 import com.spinevox.app.common.convertBitmapToBase64
+import com.spinevox.app.common.showToast
+import com.spinevox.app.network.RequestInpectionList
 import com.spinevox.app.network.SpineVoxService
+import com.spinevox.app.network.serverErrorMessage
 import com.spinevox.app.screens.diagnostic.camera.CustomCameraUIActivity
 import com.spinevox.app.screens.diagnostic.camera.CustomCameraUISecondActivity
-import kotlinx.android.synthetic.main.activity_custom_camera_ui.iv_close
 import kotlinx.android.synthetic.main.activity_photo_preview.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import kotlin.coroutines.CoroutineContext
 
 class PhotoPreviewActivity : AppCompatActivity(), CoroutineScope {
@@ -38,7 +42,6 @@ class PhotoPreviewActivity : AppCompatActivity(), CoroutineScope {
 
         iv_preview.setImageBitmap(bitmap)
 
-        iv_close.setOnClickListener { onBackPressed() }
         btn_remake.setOnClickListener {
             when (screenNumber) {
                 1 -> startActivity(Intent(this@PhotoPreviewActivity, CustomCameraUIActivity::class.java))
@@ -65,13 +68,20 @@ class PhotoPreviewActivity : AppCompatActivity(), CoroutineScope {
                     val image2 = convertBitmapToBase64(TwoBitmapHolders.bitmap2!!)
 
                     launch {
+                        showProgress()
                         try {
+                            val height = SpineVoxService.getService(this@PhotoPreviewActivity, true).me("JWT $token").await().data.profile.height
                             SpineVoxService.getService(this@PhotoPreviewActivity, true)
-                                .sendInspectionList("JWT $token", "image", image1, image2).await()
+                                .sendInspectionList("JWT $token",
+                                        RequestInpectionList("image", image1, image2)).await()
                             startActivity(Intent(this@PhotoPreviewActivity, WaitingDoctorResultsActivity::class.java))
-                        } catch (e: Throwable) {
-                            val a = 5
-                        } finally {
+                        }  catch (e: HttpException) {
+                            showToast(this@PhotoPreviewActivity, e.serverErrorMessage())
+                        } catch (e: Exception) {
+                            val a = ""
+                        }
+                        finally {
+                            hideProgress()
                             finish()
                         }
                     }
@@ -85,4 +95,15 @@ class PhotoPreviewActivity : AppCompatActivity(), CoroutineScope {
         }
 
     }
+
+    private fun showProgress() {
+        pb_loader.visibility = View.VISIBLE
+        btn_save.isClickable = false
+    }
+
+    private fun hideProgress() {
+        pb_loader.visibility = View.GONE
+        btn_save.isClickable = true
+    }
+
 }

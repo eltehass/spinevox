@@ -7,11 +7,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/pb_loader"
+            android:translationZ="2dp"
+            android:elevation="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:background="@android:color/transparent"
+            tools:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_pink_gradient_block"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
+            android:background="@android:color/transparent"
+            android:textStyle="bold"
             android:text="Налаштування"
             android:textColor="#FD1414"
             android:textSize="28sp"
@@ -20,6 +46,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
+            android:id="@+id/frameLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -53,81 +80,81 @@
             android:id="@+id/tv_title_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="40dp"
             android:text="Ім’я"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_input_name"
             app:layout_constraintEnd_toEndOf="@+id/tv_input_name"
-            app:layout_constraintStart_toStartOf="@+id/tv_input_name" />
+            app:layout_constraintStart_toStartOf="@+id/tv_input_name"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
 
         <TextView
             android:id="@+id/tv_title_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
             android:text="Пароль"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_input_password"
             app:layout_constraintEnd_toEndOf="@+id/tv_input_password"
-            app:layout_constraintStart_toStartOf="@+id/tv_input_password" />
+            app:layout_constraintStart_toStartOf="@+id/tv_input_password"
+            app:layout_constraintTop_toBottomOf="@+id/tv_input_name" />
 
         <TextView
             android:id="@+id/tv_title_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
             android:text="Email"
             android:textColor="@android:color/black"
             android:textSize="14sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tv_input_email"
             app:layout_constraintEnd_toEndOf="@+id/tv_input_email"
-            app:layout_constraintStart_toStartOf="@+id/tv_input_email" />
+            app:layout_constraintStart_toStartOf="@+id/tv_input_email"
+            app:layout_constraintTop_toBottomOf="@+id/tv_input_password" />
 
         <TextView
             android:id="@+id/tv_input_name"
             android:layout_width="296dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/shape_grey_black_border"
             android:gravity="center"
             android:textColor="#969696"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_title_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_name"
             tools:text="Софія" />
 
         <TextView
             android:id="@+id/tv_input_password"
             android:layout_width="296dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/shape_grey_black_border"
             android:gravity="center"
             android:text="•••••••••"
             android:textColor="#969696"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_title_email"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_password" />
 
         <TextView
             android:id="@+id/tv_input_email"
             android:layout_width="296dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/shape_grey_black_border"
             android:gravity="center"
             android:textColor="#969696"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/btn_exit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_email"
             tools:text="0000000@gmail.com" />
 
         <Button

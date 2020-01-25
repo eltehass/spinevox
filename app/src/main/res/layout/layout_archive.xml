@@ -8,17 +8,27 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/iv_close"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_red_back"
+            android:id="@+id/imageView4"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_pink_gradient_block"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/textView3"
@@ -26,6 +36,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:text="Архів"
+            android:background="@android:color/transparent"
+            android:textStyle="bold"
             android:textColor="#FD1414"
             android:textSize="28sp"
             app:layout_constraintEnd_toEndOf="parent"

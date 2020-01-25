@@ -19,14 +19,18 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.Scope
 import com.google.android.gms.tasks.Task
 import com.spinevox.app.R
+import com.spinevox.app.common.URL_TERMS_RULES
+import com.spinevox.app.common.openWebPage
+import com.spinevox.app.common.showToast
 import com.spinevox.app.databinding.LayoutLoginOrRegisterBinding
 import com.spinevox.app.network.SpineVoxService
-import com.spinevox.app.screens.HostContentActivity
+import com.spinevox.app.network.serverErrorMessage
 import com.spinevox.app.screens.base.LazyFragment
 import kotlinx.coroutines.launch
 import okhttp3.*
 import org.json.JSONException
 import org.json.JSONObject
+import retrofit2.HttpException
 import java.io.IOException
 
 
@@ -58,6 +62,7 @@ class LoginOrRegisterFragment : LazyFragment<LayoutLoginOrRegisterBinding>() {
     }
 
     override fun initController(view: View) {
+        binding.llBottom.setOnClickListener { activity?.openWebPage(URL_TERMS_RULES) }
         initFacebookAuth()
         //initGoogleAuth()
 
@@ -119,20 +124,26 @@ class LoginOrRegisterFragment : LazyFragment<LayoutLoginOrRegisterBinding>() {
     private fun loginFacebook(accessToken: String) {
         launch {
             try {
+                showProgress()
                 val serverResponse = SpineVoxService.getService(context!!).facebookLogin(accessToken)
                 val serverToken = serverResponse.await().data.token
                 sharedPreferences.edit { putString("serverToken", serverToken) }
 
-                val userHeight = sharedPreferences.getInt("user_height", -1)
-                if (userHeight != -1) {
-                    startActivity(Intent(context, HostContentActivity::class.java))
-                } else {
+                val height = SpineVoxService.getService(context!!, true).me("JWT $serverToken").await().data.profile.height
+                if (height == null || height < 50) {
                     findNavController().navigate(R.id.action_mainLoginFragment_to_setAgeActivity)
+                } else {
+                    sharedPreferences.edit { putInt("user_height", height.toInt()) }
+                    findNavController().navigate(R.id.action_mainLoginFragment_to_hostContentActivity)
                 }
 
                 activity?.finish()
+            } catch (e: HttpException) {
+                showToast(context!!, e.serverErrorMessage())
             } catch (e: Throwable) {
-                //TODO show error
+
+            } finally {
+                hideProgress()
             }
         }
     }
@@ -140,21 +151,26 @@ class LoginOrRegisterFragment : LazyFragment<LayoutLoginOrRegisterBinding>() {
     private fun loginGoogle(accessToken: String) {
         launch {
             try {
+                showProgress()
                 val serverResponse = SpineVoxService.getService(context!!).googleLogin(accessToken)
                 val serverToken = serverResponse.await().data.token
                 sharedPreferences.edit { putString("serverToken", serverToken) }
 
-                val userHeight = sharedPreferences.getInt("user_height", -1)
-                if (userHeight != -1) {
-                    startActivity(Intent(context, HostContentActivity::class.java))
-                } else {
+                val height = SpineVoxService.getService(context!!, true).me("JWT $serverToken").await().data.profile.height
+                if (height == null || height < 50) {
                     findNavController().navigate(R.id.action_mainLoginFragment_to_setAgeActivity)
+                } else {
+                    sharedPreferences.edit { putInt("user_height", height.toInt()) }
+                    findNavController().navigate(R.id.action_mainLoginFragment_to_hostContentActivity)
                 }
 
                 activity?.finish()
-            } catch (e: Throwable) {
-                val msg = e.message
-                //TODO show error
+            } catch (e: HttpException) {
+                showToast(context!!, e.serverErrorMessage())
+            }  catch (e: Throwable) {
+
+            } finally {
+                hideProgress()
             }
         }
 
@@ -187,6 +203,18 @@ class LoginOrRegisterFragment : LazyFragment<LayoutLoginOrRegisterBinding>() {
                 }
             }
         })
+    }
+
+    private fun showProgress() {
+        binding.flLoginFacebook.isClickable = false
+        binding.flLoginGoogle.isClickable = false
+        binding.pbLoader.visibility = View.VISIBLE
+    }
+
+    private fun hideProgress() {
+        binding.flLoginFacebook.isClickable = true
+        binding.flLoginGoogle.isClickable = true
+        binding.pbLoader.visibility = View.GONE
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

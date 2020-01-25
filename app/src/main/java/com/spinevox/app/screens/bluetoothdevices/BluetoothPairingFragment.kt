@@ -21,6 +21,7 @@ import com.spinevox.app.screens.base.LazyFragment
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class BluetoothPairingFragment : LazyFragment<LayoutBluetoothPairingBinding>() {
 
     override lateinit var binding: LayoutBluetoothPairingBinding
@@ -38,13 +39,38 @@ class BluetoothPairingFragment : LazyFragment<LayoutBluetoothPairingBinding>() {
 
         binding.ivConnect.setOnClickListener {
             if (binding.lv.checkedItemPosition >= 0) {
-                devices[binding.lv.checkedItemPosition].createBond()
-                if (devices[binding.lv.checkedItemPosition].bondState == BluetoothDevice.BOND_BONDED) {
-                    onDeviceBonded()
-                }
+                BluetoothData.bluetoothDevice = devices[binding.lv.checkedItemPosition]
+                findNavController().navigate(R.id.action_navigation_tab2_to_bluetoothDevicePreparingFragment)
+
+
+
+//                devices[binding.lv.checkedItemPosition].createBond()
+//                if (devices[binding.lv.checkedItemPosition].bondState == BluetoothDevice.BOND_BONDED) {
+//                    val name = devices[binding.lv.checkedItemPosition].name
+//                    val b = 5
+//
+////                    onDeviceBonded()
+//
+//                    BluetoothData.bluetoothDevice = devices[binding.lv.checkedItemPosition]
+//
+//                    //createBond(devices[binding.lv.checkedItemPosition])
+//                    findNavController().navigate(R.id.action_navigation_tab2_to_bluetoothDevicePreparingFragment)
+//
+//                }
             }
         }
     }
+
+
+//    @Throws(Exception::class)
+//    fun createBond(btDevice: BluetoothDevice?): Boolean {
+//        val class1 =
+//            Class.forName("android.bluetooth.BluetoothDevice")
+//        val createBondMethod: Method = class1.getMethod("createBond")
+//        val returnValue = createBondMethod.invoke(btDevice) as Boolean
+//        return returnValue
+//    }
+
 
     private fun initBluetooth() {
         if (ContextCompat.checkSelfPermission(activity!!, ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -76,6 +102,10 @@ class BluetoothPairingFragment : LazyFragment<LayoutBluetoothPairingBinding>() {
 
     private fun onDeviceBonded() {
         mBluetoothConnection.startClient(devices[binding.lv.checkedItemPosition], uuid)
+//        devices[0].uuids[0].uuid
+//        BluetoothData.uuid = uuid
+        BluetoothData.bluetoothDevice = devices[binding.lv.checkedItemPosition]
+
         Log.d("BluetoothState", "BroadcastReceiver: BOND_BONDED.")
         findNavController().navigate(R.id.action_navigation_tab2_to_bluetoothDevicePreparingFragment)
     }

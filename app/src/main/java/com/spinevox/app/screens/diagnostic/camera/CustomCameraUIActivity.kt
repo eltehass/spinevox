@@ -1,6 +1,7 @@
 package com.spinevox.app.screens.diagnostic.camera
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -22,6 +23,10 @@ class CustomCameraUIActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_custom_camera_ui)
+
+        val sharedPreferences = getSharedPreferences("", Context.MODE_PRIVATE)
+        val height = sharedPreferences.getInt("user_height", 185)
+        tv_height.text = "Зріст $height см"
 
         iv_close.setOnClickListener { onBackPressed() }
         camera2 = Camera2(this, camera_view)

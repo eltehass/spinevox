@@ -24,19 +24,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_tab3"
-        android:name="com.spinevox.app.screens.trainings.TrainingsMainFragment"
-        android:label="TrainingsMainFragment" >
-        <action
-            android:id="@+id/action_navigation_tab3_to_navigation_tab4"
-            app:destination="@id/navigation_tab4"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
-
-    <fragment
         android:id="@+id/archiveFragment"
         android:name="com.spinevox.app.screens.diagnostic.archive.ArchiveFragment"
         android:label="ArchiveFragment" >
@@ -55,13 +42,7 @@
     <fragment android:id="@+id/navigation_tab2"
               android:name="com.spinevox.app.screens.bluetoothdevices.BluetoothPairingFragment"
               android:label="BluetoothPairingFragment">
-        <action
-            android:id="@+id/action_navigation_tab2_to_navigation_tab3"
-            app:destination="@id/navigation_tab3"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
         <action
             android:id="@+id/action_navigation_tab2_to_bluetoothDevicePreparingFragment"
             app:destination="@id/bluetoothDevicePreparingFragment"

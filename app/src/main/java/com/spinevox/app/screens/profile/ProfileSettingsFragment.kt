@@ -25,9 +25,11 @@ import com.spinevox.app.common.convertBitmapToBase64
 import com.spinevox.app.common.showToast
 import com.spinevox.app.databinding.LayoutProfileSettingsBinding
 import com.spinevox.app.network.SpineVoxService
+import com.spinevox.app.network.serverErrorMessage
 import com.spinevox.app.screens.base.LazyFragment
 import com.spinevox.app.screens.login.HostLoginActivity
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 @Suppress("UNNECESSARY_NOT_NULL_ASSERTION")
 class ProfileSettingsFragment : LazyFragment<LayoutProfileSettingsBinding>() {
@@ -48,8 +50,10 @@ class ProfileSettingsFragment : LazyFragment<LayoutProfileSettingsBinding>() {
                     .load(userInfo.data.profile.photo)
                     .apply(RequestOptions.circleCropTransform())
                     .into(binding.ivProfile)
+            } catch (e: HttpException) {
+                showToast(context!!, e.serverErrorMessage())
             } catch (e: Throwable) {
-                val error = e.message
+
             }
         }
 
@@ -66,6 +70,7 @@ class ProfileSettingsFragment : LazyFragment<LayoutProfileSettingsBinding>() {
 
         binding.btnExit.setOnClickListener {
             sharedPreferences.edit { putString("serverToken", "") }
+            sharedPreferences.edit { putInt("user_height", 0) }
             startActivity(Intent(context, HostLoginActivity::class.java))
             activity?.finish()
         }
@@ -130,13 +135,18 @@ class ProfileSettingsFragment : LazyFragment<LayoutProfileSettingsBinding>() {
         val base64 = convertBitmapToBase64(bitmap)
 
         launch {
+            showProgress()
             try {
                 val result = SpineVoxService.getService(context!!, true).changePhoto("JWT $serverToken", base64).await()
                 Glide.with(context!!)
                     .load(result.data.photo)
                     .apply(RequestOptions.circleCropTransform())
                     .into(binding.ivProfile)
+            } catch (e: HttpException) {
+                showToast(context!!, e.serverErrorMessage())
             } catch (e: Throwable) {
+            } finally {
+                hideProgress()
             }
         }
     }
@@ -164,13 +174,18 @@ class ProfileSettingsFragment : LazyFragment<LayoutProfileSettingsBinding>() {
             }
 
             launch {
+                showProgress()
                 try {
                     val result = SpineVoxService.getService(context!!, true).changeEmail("JWT $serverToken", email).await()
                     dialog.cancel()
                     binding.tvInputEmail.text = email
+                } catch (e: HttpException) {
+                    showToast(context!!, e.serverErrorMessage())
+                    dialog.cancel()
                 } catch (e: Throwable) {
                     dialog.cancel()
-                    showToast(context!!, "Помилка")
+                } finally {
+                    hideProgress()
                 }
             }
         }
@@ -209,12 +224,19 @@ class ProfileSettingsFragment : LazyFragment<LayoutProfileSettingsBinding>() {
             }
 
             launch {
+                showProgress()
                 try {
                     SpineVoxService.getService(context!!, true).setPassword("JWT $serverToken", newPass.text.toString(), oldPass.text.toString()).await()
                     showToast(context!!, "Пароль змінено")
                     dialog.cancel()
-                } catch (e: Throwable) {
-                    showToast(context!!, "Помилка")
+                } catch (e: HttpException) {
+                    showToast(context!!, e.serverErrorMessage())
+                    dialog.cancel()
+                }
+                catch (e: Throwable) {
+                    dialog.cancel()
+                } finally {
+                    hideProgress()
                 }
             }
         }
@@ -222,6 +244,14 @@ class ProfileSettingsFragment : LazyFragment<LayoutProfileSettingsBinding>() {
 
         val alert11 = alertDialog.create()
         alert11.show()
+    }
+
+    private fun showProgress() {
+        binding.pbLoader.visibility = View.VISIBLE
+    }
+
+    private fun hideProgress() {
+        binding.pbLoader.visibility = View.GONE
     }
 
     override fun getLayoutId(): Int = R.layout.layout_profile_settings

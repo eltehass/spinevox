@@ -7,10 +7,21 @@
     tools:context=".screens.SetHeightActivity">
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_pink_gradient_block"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:background="@android:color/transparent"
         android:id="@+id/imageView2"
         android:layout_width="64dp"
         android:layout_height="88dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="25dp"
         android:src="@drawable/ic_robot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,6 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Ваш зріст"
+        android:background="@android:color/transparent"
+        android:textStyle="bold"
         android:textColor="#FD1414"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView2"

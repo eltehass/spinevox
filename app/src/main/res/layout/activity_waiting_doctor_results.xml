@@ -21,15 +21,17 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="25dp"
         android:text="Очікування\nРезультатів"
         android:textColor="#FD1414"
+        android:textStyle="bold"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/iv_running_robot"
         android:layout_width="190dp"
         android:layout_height="120dp"
         android:layout_marginEnd="8dp"

@@ -20,11 +20,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ScoliometrActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".ScoliometrRulesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InspectionRulesActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -45,21 +52,36 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.diagnostic.WaitingDoctorResultsActivity" />
-        <activity android:name=".screens.diagnostic.camera.CustomCameraUISecondActivity" />
-        <activity android:name=".screens.diagnostic.PhotoPreviewActivity" />
-        <activity android:name=".screens.diagnostic.camera.CustomCameraUIActivity" />
-        <activity android:name=".screens.HostContentActivity" />
-        <activity android:name=".screens.SetHeightActivity" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".screens.diagnostic.WaitingDoctorResultsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.diagnostic.camera.CustomCameraUISecondActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.diagnostic.PhotoPreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.diagnostic.camera.CustomCameraUIActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.HostContentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".screens.SetHeightActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.login.HostLoginActivity" />
-
+        <activity
+            android:name=".screens.login.HostLoginActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

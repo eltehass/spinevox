@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import com.spinevox.app.screens.HostContentActivity
+import com.spinevox.app.screens.SetHeightActivity
 import com.spinevox.app.screens.login.HostLoginActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -17,10 +18,18 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
         val sharedPreferences = getSharedPreferences("", Context.MODE_PRIVATE)
         val serverToken = sharedPreferences.getString("serverToken", "") ?: ""
+        val userHeight = sharedPreferences.getInt("user_height", 0)
 
         Handler().postDelayed({
+            val className = if (serverToken.isEmpty())
+                HostLoginActivity::class.java
+            else if (userHeight != 0)
+                HostContentActivity::class.java
+            else
+                SetHeightActivity::class.java
+
             /* Create an Intent that will start the Menu-Activity. */
-            val mainIntent = Intent(this@SplashActivity, if (serverToken.isEmpty()) HostLoginActivity::class.java else HostContentActivity::class.java)
+            val mainIntent = Intent(this@SplashActivity, className)
             startActivity(mainIntent)
             finish()
         }, SPLASH_DISPLAY_LENGTH)

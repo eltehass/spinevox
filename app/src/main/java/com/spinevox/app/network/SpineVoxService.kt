@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object SpineVoxService {
 
-    private const val BASE_URL = "http://spinevox-dev.i-bionic.com/"
+    private const val BASE_URL = "https://spinevox-dev.i-bionic.com/"
 
     //const val API_KEY = "XZg8Ra5ueD4TTibr4mF6L766jaIVRXnY"
     //const val API_KEY = "2UDAgUayuZdghHXoF4zfqqtd1z3V7Qla"

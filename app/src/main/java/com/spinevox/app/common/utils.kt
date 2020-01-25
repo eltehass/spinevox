@@ -18,7 +18,7 @@ fun showToast(context: Context, message: String, textColor: Int = Color.BLACK, b
 
 fun convertBitmapToBase64(bitmap: Bitmap): String {
     val byteArrayOutputStream = ByteArrayOutputStream()
-    bitmap.compress(Bitmap.CompressFormat.PNG, 10, byteArrayOutputStream)
+    bitmap.compress(Bitmap.CompressFormat.PNG, 70, byteArrayOutputStream)
     val byteArray = byteArrayOutputStream.toByteArray()
     return Base64.encodeToString(byteArray, Base64.DEFAULT)
 }

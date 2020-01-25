@@ -41,6 +41,11 @@ interface SpineVoxApi {
     fun me(@Header("Authorization") authorization: String): Deferred<DataClass>
     //PUTS
 
+    @PUT("api/auth/me/")
+    fun updateMe(
+            @Header("Authorization") authorization: String,
+            @Body userUpdate: RequestUserUpdate): Deferred<DataClass>
+
     @FormUrlEncoded
     @PUT("api/auth/me/photo/")
     fun changePhoto(@Header("Authorization") authorization: String, @Field("source_photo") sourcePhoto: String): Deferred<ChangePhotoResponse>
@@ -49,15 +54,20 @@ interface SpineVoxApi {
     @POST("api/auth/me/email/send/")
     fun changeEmail(@Header("Authorization") authorization: String, @Field("email") email: String): Deferred<DetailResponse>
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
+//    @POST("api/posedetect/inspection/")
+//    fun sendInspectionList(@Header("Authorization") authorization: String,
+//                           @Field("inspection_type") inspectionType: String,
+//                           @Field("back_image_source") backImage: String,
+//                           @Field("profile_image_source") profileImage: String,
+//                           @Field("skoliometry_pelvis") skoliometryPelvis: Int? = null,
+//                           @Field("skoliometry_lumbar") skoliometryLumbar: Int? = null,
+//                           @Field("skoliometry_chest") skoliometryChest: Int? = null) : Deferred<Any>
+
+
     @POST("api/posedetect/inspection/")
     fun sendInspectionList(@Header("Authorization") authorization: String,
-                           @Field("inspection_type") inspectionType: String,
-                           @Field("back_image_source") backImage: String,
-                           @Field("profile_image_source") profileImage: String,
-                           @Field("skoliometry_pelvis") skoliometryPelvis: Int? = null,
-                           @Field("skoliometry_lumbar") skoliometryLumbar: Int? = null,
-                           @Field("skoliometry_chest") skoliometryChest: Int? = null) : Deferred<Any>
+                           @Body requestBody: RequestInpectionList) : Deferred<Any>
 
     @GET("api/posedetect/inspection/")
     fun getInspectionList(@Header("Authorization") authorization: String): Deferred<InspectionDataResponse>
@@ -80,6 +90,23 @@ interface SpineVoxApi {
     fun notificationConnect(@Field("name") deviceId: String, @Field("registration_id") key: String, @Field("device_id") uniqueId: String, @Field("type") iso: String): Deferred<DetailResponse>
 
 }
+
+data class RequestUserUpdate(
+        val first_name: String,
+        val profile: ProfileWithHeight,
+        val last_name: String
+): Serializable
+
+data class RequestInpectionList(
+        val inspection_type: String,
+        val back_image_source: String? = null,
+        val profile_image_source: String? = null,
+        val skoliometry_pelvis: Int? = null,
+        val skoliometry_lumbar: Int? = null,
+        val skoliometry_chest: Int? = null
+): Serializable
+
+data class ProfileWithHeight(val height: Int): Serializable
 
 //"api/auth/jwt/create/"
 data class LoginResponse(val data: Data, val detail: String) : Serializable {
@@ -105,7 +132,7 @@ data class MeData(
         val photo: String?,
         val gender: String,
         val birthday: String,
-        val height: Double,
+        val height: Double?,
         val weight: Double,
         val sit: String,
         val pain_mark: String,

@@ -23,4 +23,4 @@ class ArchiveAdapter(onItemClickListener: OnItemClickListener<ItemArchiveData>) 
 
 }
 
-data class ItemArchiveData(val title: String, val date: String) : Serializable
+data class ItemArchiveData(val title: String, val date: String, val diagnosis: String) : Serializable
